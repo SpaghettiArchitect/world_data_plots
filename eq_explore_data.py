@@ -11,15 +11,17 @@ all_eq_data = json.loads(contents)
 # Examine all earthquakes in the dataset.
 all_eq_dicts = all_eq_data["features"]
 
-# Store the magnitude, longitude, and latitude of each earthquake.
-magnitudes, longitudes, latitudes = [], [], []
+# Store the magnitude, longitude, latitude and title of each earthquake.
+magnitudes, longitudes, latitudes, eq_titles = [], [], [], []
 for eq_dict in all_eq_dicts:
     magnitude = eq_dict["properties"]["mag"]
     longitude = eq_dict["geometry"]["coordinates"][0]
     latitude = eq_dict["geometry"]["coordinates"][1]
+    eq_title = eq_dict["properties"]["title"]
     magnitudes.append(magnitude)
     longitudes.append(longitude)
     latitudes.append(latitude)
+    eq_titles.append(eq_title)
 
 # Build a simple world map that displays the location of earthquakes.
 title = "Global Earthquakes"
@@ -32,5 +34,6 @@ fig = px.scatter_geo(
     color_continuous_scale="temps",
     labels={"color": "Magnitude"},
     projection="natural earth",
+    hover_name=eq_titles,
 )
 fig.show()
