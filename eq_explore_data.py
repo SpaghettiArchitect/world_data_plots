@@ -23,5 +23,14 @@ for eq_dict in all_eq_dicts:
 
 # Build a simple world map that displays the location of earthquakes.
 title = "Global Earthquakes"
-fig = px.scatter_geo(lat=latitudes, lon=longitudes, size=magnitudes, title=title)
+fig = px.scatter_geo(
+    lat=latitudes,
+    lon=longitudes,
+    size=magnitudes,
+    title=title,
+    color=magnitudes,
+    color_continuous_scale="temps",
+    labels={"color": "Magnitude"},
+    projection="natural earth",
+)
 fig.show()
