@@ -1,6 +1,8 @@
 import json
 from pathlib import Path
 
+import plotly.express as px
+
 # Read data as a string and convert to a Python object.
 path = Path(r"eq_data\eq_data_1_day_m1.geojson")
 contents = path.read_text("utf8")
@@ -19,6 +21,7 @@ for eq_dict in all_eq_dicts:
     longitudes.append(longitude)
     latitudes.append(latitude)
 
-print(magnitudes[:10])
-print(longitudes[:5])
-print(latitudes[:5])
+# Build a simple world map that displays the location of earthquakes.
+title = "Global Earthquakes"
+fig = px.scatter_geo(lat=latitudes, lon=longitudes, title=title)
+fig.show()
