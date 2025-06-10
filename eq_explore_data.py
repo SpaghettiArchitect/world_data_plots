@@ -14,14 +14,10 @@ all_eq_dicts = all_eq_data["features"]
 # Store the magnitude, longitude, latitude and title of each earthquake.
 magnitudes, longitudes, latitudes, eq_titles = [], [], [], []
 for eq_dict in all_eq_dicts:
-    magnitude = eq_dict["properties"]["mag"]
-    longitude = eq_dict["geometry"]["coordinates"][0]
-    latitude = eq_dict["geometry"]["coordinates"][1]
-    eq_title = eq_dict["properties"]["title"]
-    magnitudes.append(magnitude)
-    longitudes.append(longitude)
-    latitudes.append(latitude)
-    eq_titles.append(eq_title)
+    magnitudes.append(eq_dict["properties"]["mag"])
+    longitudes.append(eq_dict["geometry"]["coordinates"][0])
+    latitudes.append(eq_dict["geometry"]["coordinates"][1])
+    eq_titles.append(eq_dict["properties"]["title"])
 
 # Build a simple world map that displays the location of earthquakes.
 title = "Global Earthquakes"
